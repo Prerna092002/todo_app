@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/assets/js/script.js"></script>
+</head>
+<body>
+    <div id="main-div">
+      <h1>TODO App</h1>
+      <hr>
+      <div>
+        <form action="/create-task" method="post">
+      <label id="label-describe" for="title">TITLE</label><br>
+      <input class="no-outline remove-border" name="title" id="title" class="no-outline" placeholder="Title of task">
+      <br>
+      <hr>       
+       <label for="Description">Description</label>
+       <br>
+       <input type="text" class="no-outline remove-border no-outline" id="Description" name="Description" placeholder="What do you nedd to do?">
+       <br>
+        
+        <hr>
+    
+        <div id="drop">
+        <label for="Category">CATEGORY</label><br>
+        <select class="no-outline remove-border" name="Category" id="Category"  >
+        <option>Choose a Category</option>
+                        <option value="Work">Work</option>
+                        <option value="School">School</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Other">Other</option>
+       </select>
+       </div>
+      
+    <hr>
+    <br>
+    
+    <div id="add-btn">
+        <button type="submit" class="no-outline remove-border" id="add-item"><i class="fa fa-plus"></i> &nbsp ADD TASK</button>
+        <a id="complete-task-btn" href="/completed-task" >COMPLETED TASKS</a>
+    </div>
+</form>
+</div>
+<br>
+    <div class="tasks">
+        <div id="task-btn"><button class="no-outline remove-border">Pending Tasks</button>
+            </div>
+        <%  %> 
+        <% for(let i of task_list) { %>
+            <div class="card">
+                <div id="title-line">
+                    <a href="/complete/<%=i._id %>" class="complete">✅</a>
+                <p id="title-print">
+                    <%=i.title %>
+                </div>
+                    <p id="description-print">
+                    <%=i.Description %>
+                </p>
+                        <p id="cat-print">
+                            <%=i.Category %>
+                        </p>
+                        <div id="btns">
+                        <button class="no-outline remove-border" id="update-item"> <a href="/profile/<%=i._id %>">Update</a></button>
+                        <button class="no-outline remove-border" id="dlt-item"> <a href="/delete-task/<%=i._id %>">Delete</a></button>
+                    </div>
+                      </p>
+                    <hr>
+            </div>
+            <% } %>
+    </div>
+    </div>
+
+</body>
+</html>
